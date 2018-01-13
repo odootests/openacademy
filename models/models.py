@@ -8,6 +8,9 @@ class Course(models.Model):
 	description = fields.Text()
 	responsible_id = fields.Many2one('res.users', ondelete='set null', string="Course Taker", index=True)
 	session_ids = fields.One2many('openacademy.session', 'course_id', string='Sessions')
+	
+	def __str__(self):
+		return self.course_name
 
 class Session(models.Model):
 	_name='openacademy.session'
@@ -16,7 +19,7 @@ class Session(models.Model):
 	duration = fields.Float(digits=(6,2), help="Duration in days")
 	seats = fields.Integer(string="Number of seats")
 	instructor_id = fields.Many2one('res.partner', string='Course Instructor')
-	course_id=fields.Many2one('openacademy.course', ondelete='cascade', string='Course', required=True)
+	course_id = fields.Many2one('openacademy.course', ondelete='cascade', string='Course', required=True)
 
 # class openacademy(models.Model):
 #     _name = 'openacademy.openacademy'
