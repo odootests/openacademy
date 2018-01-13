@@ -28,6 +28,14 @@
 							<page string='About'>
 								<p> This is about Something </p>
 							</page>
+							<page string="Sessions">
+                            	<field name='session_ids'>
+                            		<tree name='Registered Sessions'>
+                            			<field name='session_name'/>
+                            			<field name='instructor_id'/>
+                            		</tree>
+                            	</field>
+                            </page>
 						</notebook>
 					</sheet>
 				</form>
