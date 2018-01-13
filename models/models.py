@@ -20,6 +20,7 @@ class Session(models.Model):
 	seats = fields.Integer(string="Number of seats")
 	instructor_id = fields.Many2one('res.partner', string='Course Instructor')
 	course_id = fields.Many2one('openacademy.course', ondelete='cascade', string='Course', required=True)
+	attendee_ids = fields.Many2many('res.partner', string="Attendees")
 
 # class openacademy(models.Model):
 #     _name = 'openacademy.openacademy'
