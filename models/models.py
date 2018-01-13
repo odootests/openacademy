@@ -7,6 +7,13 @@ class Course(models.Model):
 	course_name = fields.Char(string="Title", required=True)
 	description = fields.Text()
 
+class Session(models.Model):
+	_name='openacademy.session'
+	session_name= fields.Char(required=True)
+	start_date = fields.Date()
+	duration = fields.Float(digits=(6,2), help="Duration in days")
+	seats = fields.Integer(string="Number of seats")
+
 # class openacademy(models.Model):
 #     _name = 'openacademy.openacademy'
 
