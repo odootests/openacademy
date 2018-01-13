@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding="UTF-8"?>
 <odoo>
     <data>
         <record model='ir.ui.view' id='session_form_view'>
@@ -8,13 +8,31 @@
                 <form string='Session Form'>
                     <sheet>
                         <group>
-                            <field name='session_name'/>
-                            <field name='start_date'/>
-                            <field name='duration'/>
-                            <field name='seats'/>
+                            <group string="General">
+                                <field name='course_id'/>
+                                <field name='session_name'/>
+                                <field name='instructor_id'/>
+                            </group>    
+                            <group string="Schedule">
+                                <field name='start_date'/>
+                                <field name='duration'/>
+                                <field name='seats'/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+   
+        <record model='ir.ui.view' id='session_tree_view'>
+            <field name='name'>session.tree</field>
+            <field name='model'>openacademy.session</field>
+            <field name='arch' type='xml'>
+                <tree string='Session Tree'>
+                    <field name='session_name'/>
+                    <field name='course_id'/>
+                </tree>
             </field>
         </record>
 
@@ -22,10 +40,14 @@
             <field name='name'>Sessions Heading</field>
             <field name='res_model'>openacademy.session</field>
             <field name='view_type'>form</field>
-            <field name='view_mode'>tree,kanban</field>
+            <field name='view_mode'>tree,form</field>
+            <field name='help' type='xml'>
+                <p class='oe_view_nocontent_create'>Create Session </p>
+            </field>
         </record>
 
         <menuitem id='sessions_menu' name="Sessions Menu" parent="openacademy_menu" action='session_list_action' />
 
-      </data>
-  </odoo>
+    
+  </data>
+</odoo>
