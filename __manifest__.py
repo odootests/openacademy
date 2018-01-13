@@ -13,7 +13,8 @@
         'views/views.xml',
         'views/templates.xml',
         'views/openacademy_course.xml',
-        'views/openacademy_session.xml'
+        'views/openacademy_session.xml',
+        'views/partner.xml'
     ],
     'demo': [
         'demo/demo.xml',
