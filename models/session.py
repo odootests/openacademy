@@ -1,5 +1,4 @@
-from odoo import models, fields, api
-from . import *
+from odoo import models, fields, api, exceptions
 
 class Session(models.Model):
 	_name='openacademy.session'
@@ -36,3 +35,9 @@ class Session(models.Model):
 					'message': "More Attendees than seats"
 				}
 			}
+			
+	@api.constrains('instructor_id', 'attendee_ids')
+	def check_instructor_not_in_attendees(self):
+		for rec in self:
+			if rec.instructor_id and rec.instructor_id in rec.attendee_ids:
+				raise exceptions.ValidationError("The Instructor cannot be an attendee")
