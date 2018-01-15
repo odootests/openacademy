@@ -16,9 +16,6 @@
         'views/openacademy_session.xml',
         'views/partner.xml'
     ],
-    'demo': [
-        'demo/demo.xml',
-    ],
     'installable': True,
     'application': True
 }
