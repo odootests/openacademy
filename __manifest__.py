@@ -9,12 +9,13 @@
     'version': '0.1',
     'depends': ['base'],
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
         'views/openacademy_course.xml',
         'views/openacademy_session.xml',
-        'views/partner.xml'
+        'views/partner.xml',
+        'views/openacademy_session_workflow.xml'
     ],
     'installable': True,
     'application': True
