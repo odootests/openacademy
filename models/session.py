@@ -18,7 +18,7 @@ class Session(models.Model):
 	hours = fields.Float(string="Duration in hours", compute='calc_hours', inverse='set_hours')
 	
 	attendees_count = fields.Integer(string='Attendees Count', compute='calc_attendees', store=True)
-	state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'), ('done','Done')], default='draft')
+	state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'), ('done','Done')])
 
 	@api.multi
 	def action_draft(self):
@@ -31,7 +31,7 @@ class Session(models.Model):
 	@api.multi
 	def action_done(self):
 		self.state = 'done'
-	
+
 	@api.depends('attendee_ids')
 	def calc_attendees(self):
 		for rec in self:
