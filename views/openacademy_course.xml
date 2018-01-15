@@ -7,7 +7,7 @@
 			<field name='view_type'>form</field>
 			<field name='view_mode'>tree,form</field>
 			<field name='help' type='xml'>
-				<p class='oe_view_nocontent_create'>Create Course </p>
+				<p class='oe_view_nocontent_create'>Create Course</p>
 			</field>
 		</record>
 
