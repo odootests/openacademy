@@ -7,9 +7,9 @@
 			<field name='arch' type='xml'>
 				<form string='Session Form'>
                     <header>
-                    	<button name='action_draft' type='workflow' string='Reset to Draft' states='confirmed, done'/>
-                    	<button name='action_confirm' type='workflow' string='Confirm' states='draft' class='oe_hightlight' />
-                    	<button name='action_done' type='workflow' string='Mark as Done' states='confirmed' class='oe_hightlight'/>
+                    	<button name='draft' type='workflow' string='Reset to Draft' states='confirmed, done'/>
+                    	<button name='confirm' type='workflow' string='Confirm' states='draft' class='oe_hightlight' />
+                    	<button name='done' type='workflow' string='Mark as Done' states='confirmed' class='oe_hightlight'/>
                     	<field name='state' widget='statusbar'/>
                     </header>
 					<sheet>
