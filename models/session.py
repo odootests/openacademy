@@ -1,4 +1,5 @@
 from odoo import models, fields, api, exceptions
+from datetime import timedelta
 
 class Session(models.Model):
 	_name='openacademy.session'
@@ -10,6 +11,25 @@ class Session(models.Model):
 	course_id = fields.Many2one('openacademy.course', ondelete='cascade', string='Course', required=True)
 	attendee_ids = fields.Many2many('res.partner', string="Attendees")
 	seats_taken = fields.Float(string="Seats Taken", compute='calc_seats_taken')
+	end_date = fields.Date(string="End Date", store=True, compute='get_end_date', inverse='set_end_date')
+	
+	@api.depends('start_date', 'duration')
+	def get_end_date(self):
+		for rec in self:
+			if not(rec.start_date and rec.duration):
+				rec.end_date = rec.start_date
+				continue
+			start = fields.Datetime.from_string(rec.start_date)
+			duration = timedelta(days=rec.duration, seconds=-1)
+			rec.end_date = start + duration
+
+	def set_end_date(self):
+		for rec in self:
+			if not (rec.start_date and rec.end_date):
+				continue
+			start_date = fields.Datetime.from_string(rec.start_date)
+			end_date = fields.Datetime.from_string(rec.end_date)
+			rec.duration = (end_date - start_date).days +1
 
 	@api.depends('seats', 'attendee_ids')
 	def calc_seats_taken(self):
