@@ -12,6 +12,8 @@ class Session(models.Model):
 	attendee_ids = fields.Many2many('res.partner', string="Attendees")
 	seats_taken = fields.Float(string="Seats Taken", compute='calc_seats_taken')
 	end_date = fields.Date(string="End Date", store=True, compute='get_end_date', inverse='set_end_date')
+
+	hours = fields.Float(string="Duration in hours", compute='calc_hours', inverse='set_hours')
 	
 	@api.depends('start_date', 'duration')
 	def get_end_date(self):
@@ -61,3 +63,12 @@ class Session(models.Model):
 		for rec in self:
 			if rec.instructor_id and rec.instructor_id in rec.attendee_ids:
 				raise exceptions.ValidationError("The Instructor cannot be an attendee")
+
+	@api.depends('duration')
+	def calc_hours(self):
+		for rec in self:
+			rec.hours = rec.duration * 24
+
+	def set_hours(self):
+		for rec in self:
+			rec.duration = rec.hours / 24
