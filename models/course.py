@@ -12,16 +12,18 @@ class Course(models.Model):
 	def __str__(self):
 		return self.course_name
 
-# class Session(models.Model):
-# 	_name='openacademy.session'
-# 	session_name= fields.Char(required=True)
-# 	start_date = fields.Date()
-# 	duration = fields.Float(digits=(6,2), help="Duration in days")
-# 	seats = fields.Integer(string="Number of seats")
-# 	instructor_id = fields.Many2one('res.partner', string='Course Instructor', domain=[('|', ('is_instructor', '=', True), ('category_id.name', 'ilike', 'Teacher'))])
-# 	course_id = fields.Many2one('openacademy.course', ondelete='cascade', string='Course', required=True)
-# 	attendee_ids = fields.Many2many('res.partner', string="Attendees")
-
+	_sql_constraints = [
+    	(
+    		'name_description_check', 
+    		'CHECK(course_name != description)',
+    		'The Course Title and description must be different'
+    	),
+    	(
+    		'check_name_unique', 
+    		'UNIQUE(course_name)' , 
+    		"The Course title must be unique"
+    	),
+    ]
 # class openacademy(models.Model):
 #     _name = 'openacademy.openacademy'
 
