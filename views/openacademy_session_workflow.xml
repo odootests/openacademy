@@ -19,14 +19,14 @@
 			<field name='name'>Confirmed</field>
 			<field name='wkf_id' ref='workflow_session'/>
 			<field name='kind'>function</field>
-			<field name='action'>action_confirmed()</field>
+			<field name='action'>action_confirm()</field>
 		</record>
 
 		<record model='workflow.activity' id='done'>
 			<field name='name'>Done</field>
 			<field name='wkf_id' ref='workflow_session'/>
 			<field name='kind'>function</field>
-			<field name='action'>action_done</field>
+			<field name='action'>action_done()</field>
 		</record>
 
 		<record model='workflow.transition' id='session_draft_to_confirmed'>
@@ -46,5 +46,11 @@
 			<field name='act_to' ref='done'/>
 			<field name='signal'>done</field>
 		</record>
+
+        <record model='workflow.transition' id='session_auto_confirm_half_filled'>
+        	<field name='act_from' ref='draft'/>
+        	<field name='act_to' ref='confirmed' />
+        	<field name='condition'>seats_taken &gt; 50</field>
+        </record>
 	</data>
 </odoo>
