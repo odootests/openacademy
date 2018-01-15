@@ -7,6 +7,8 @@ class Session(models.Model):
 	start_date = fields.Date()
 	duration = fields.Float(digits=(6,2), help="Duration in days")
 	seats = fields.Integer(string="Number of seats")
+	active = fields.Boolean(default=True)
+	color = fields.Integer()
 	instructor_id = fields.Many2one('res.partner', string='Course Instructor', domain=['|', ('is_instructor', '=', True), ('category_id.name', 'ilike', "Teacher")])
 	course_id = fields.Many2one('openacademy.course', ondelete='cascade', string='Course', required=True)
 	attendee_ids = fields.Many2many('res.partner', string="Attendees")
@@ -21,7 +23,7 @@ class Session(models.Model):
 	def calc_attendees(self):
 		for rec in self:
 			rec.attendees_count = len(rec.attendee_ids)
-	
+
 	@api.depends('start_date', 'duration')
 	def get_end_date(self):
 		for rec in self:
