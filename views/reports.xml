@@ -1,6 +1,7 @@
 <odoo>
 	<data>
 		<report id='report_session' model='openacademy.session' string='Session Report' name='openacademy.report_session_view' file='openacademy.report_session' report_type='qweb-pdf' />
+		
 		<template id='report_session_view'>
 			<t t-call='report.html_container'>
 				<t t-foreach='docs' t-as='object'>
