@@ -11,6 +11,19 @@ class Course(models.Model):
 	
 	def __str__(self):
 		return self.course_name
+		
+	@api.multi
+	def copy(self, default=None):
+		default = dict(default or {})
+		copy_count = self.search_count([('course_name', '=ilike', u"Copy of {}".format(self.course_name))])
+		if not copy_count:
+			new_course_name = u"Copy of {}".format(self.course_name)
+		else: 
+			new_course_name = u"Copy of {} {}".format(self.course_name, copy_count)
+
+		default['course_name'] = new_course_name
+		return super(Course, self).copy(default)
+
 
 	_sql_constraints = [
     	(
