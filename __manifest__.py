@@ -15,7 +15,7 @@
         'views/openacademy_course.xml',
         'views/openacademy_session.xml',
         'views/partner.xml',
-        'views/openacademy_session_workflow.xml'
+        'views/openacademy_session_workflow.xml',
     ],
     'installable': True,
     'application': True
